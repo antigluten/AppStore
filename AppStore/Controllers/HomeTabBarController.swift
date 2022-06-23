@@ -8,7 +8,9 @@
 import UIKit
 
 class HomeTabBarController: UITabBarController {
-
+    
+    
+    // MARK: - Internal
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
@@ -20,6 +22,8 @@ class HomeTabBarController: UITabBarController {
         ]
     }
     
+    
+    // MARK: - Fileprivate
     // Is is like a factory method?
     fileprivate func createNavController(viewController: UIViewController, title: String, imageName: String) -> UIViewController {
         viewController.view.backgroundColor = .white
