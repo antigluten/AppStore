@@ -11,7 +11,7 @@ class SearchResultCell: UICollectionViewCell {
     
     // MARK: - Views
     
-    let imageView: UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .red
         
@@ -49,54 +49,55 @@ class SearchResultCell: UICollectionViewCell {
         button.setTitleColor(.blue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         
+        button.backgroundColor = .init(white: 0.9, alpha: 1)
+        button.layer.cornerRadius = 16
+        
         NSLayoutConstraint.activate([
-            button.widthAnchor.constraint(equalToConstant: 80)
+            button.widthAnchor.constraint(equalToConstant: 80),
+            button.heightAnchor.constraint(equalToConstant: 32)
         ])
         
         return button
     }()
     
-    // Leave or refactor it
-    let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = 12
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    lazy var screenshot1ImageView = createScreenshotImageView()
+    lazy var screenshot2ImageView = createScreenshotImageView()
+    lazy var screenshot3ImageView = createScreenshotImageView()
  
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .link
+        let infoTopStackView = HorizontalStackView(arrangedSubviews: [
+            iconImageView,
+            VerticalStackView(arrangedSubviews: [nameLabel, categoryLabel, ratingLabel]),
+            getButton,
+        ], spacing: 12)
+        infoTopStackView.alignment = .center
         
+        let screenshotStackView = HorizontalStackView(arrangedSubviews: [
+            screenshot1ImageView, screenshot2ImageView, screenshot3ImageView
+        ], spacing: 12)
+        screenshotStackView.distribution = .fillEqually
         
-        // Mark should be refactored
-        let labelsStackView = UIStackView(arrangedSubviews: [
-            nameLabel, categoryLabel, ratingLabel
-        ])
+        let overallStackView = VerticalStackView(arrangedSubviews: [
+            infoTopStackView, screenshotStackView
+        ], spacing: 10)
+
+        addSubview(overallStackView)
         
-        labelsStackView.axis = .vertical
-        
-        stackView.alignment = .center
-        
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(labelsStackView)
-        stackView.addArrangedSubview(getButton)
-        
-        addSubview(stackView)
-        
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
-        ])
-        
+        let padding: CGFloat = 16
+        overallStackView.fillSuperview(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Private
+    func createScreenshotImageView() -> UIImageView {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .orange
+        return imageView
     }
 }
