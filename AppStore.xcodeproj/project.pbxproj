@@ -10,6 +10,8 @@
 		A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B719782866182400F8BB55 /* UIView+Layout.swift */; };
 		A7B7197B2866440400F8BB55 /* VerticalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7197A2866440400F8BB55 /* VerticalStackView.swift */; };
 		A7B7197D286648DF00F8BB55 /* HorizontalStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7197C286648DF00F8BB55 /* HorizontalStackView.swift */; };
+		A7B719802866F8BE00F8BB55 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B7197F2866F8BE00F8BB55 /* SearchResult.swift */; };
+		A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B719822866FA2800F8BB55 /* NetworkManager.swift */; };
 		A7C0F93828622E0000324C4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0F93728622E0000324C4D /* AppDelegate.swift */; };
 		A7C0F93A28622E0000324C4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0F93928622E0000324C4D /* SceneDelegate.swift */; };
 		A7C0F93F28622E0000324C4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C0F93D28622E0000324C4D /* Main.storyboard */; };
@@ -24,6 +26,8 @@
 		A7B719782866182400F8BB55 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		A7B7197A2866440400F8BB55 /* VerticalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStackView.swift; sourceTree = "<group>"; };
 		A7B7197C286648DF00F8BB55 /* HorizontalStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalStackView.swift; sourceTree = "<group>"; };
+		A7B7197F2866F8BE00F8BB55 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		A7B719822866FA2800F8BB55 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A7C0F93428622E0000324C4D /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C0F93728622E0000324C4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C0F93928622E0000324C4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +61,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		A7B7197E2866F57600F8BB55 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A7B7197F2866F8BE00F8BB55 /* SearchResult.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A7B719812866F94C00F8BB55 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A7B719822866FA2800F8BB55 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		A7C0F92B28622E0000324C4D = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +96,9 @@
 		A7C0F93628622E0000324C4D /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
+				A7B719812866F94C00F8BB55 /* Managers */,
 				A7B719772866181200F8BB55 /* Helpers */,
+				A7B7197E2866F57600F8BB55 /* Models */,
 				A7E57D61286501FC0051C82C /* Views */,
 				A7E57D5E2864BE1F0051C82C /* Controllers */,
 				A7C0F93728622E0000324C4D /* AppDelegate.swift */,
@@ -179,7 +201,9 @@
 			files = (
 				A7C0F93828622E0000324C4D /* AppDelegate.swift in Sources */,
 				A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */,
+				A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */,
 				A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */,
+				A7B719802866F8BE00F8BB55 /* SearchResult.swift in Sources */,
 				A7E57D602864BE5A0051C82C /* AppsSearchController.swift in Sources */,
 				A7E57D63286502180051C82C /* SearchResultCell.swift in Sources */,
 				A7C0F93A28622E0000324C4D /* SceneDelegate.swift in Sources */,

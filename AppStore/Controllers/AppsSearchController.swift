@@ -12,9 +12,13 @@ class AppsSearchController: UICollectionViewController {
     // MARK: - Identifier
     fileprivate let cellId = "AppsSearchController"
     
+    private var results = [SearchItem]()
+    private var manager: Manager
+    
     
     // MARK: - Initialization
-    init() {
+    init(manager: Manager) {
+        self.manager = manager
         // Not sure that it's good to do like this.
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -23,25 +27,59 @@ class AppsSearchController: UICollectionViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: -
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+        
+        fetchItunesApps()
+        
+        // MARK: - Search Controller
+        navigationItem.searchController = UISearchController()
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     
     // MARK: - Data source methods
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SearchResultCell else {
+            fatalError("Not a SearchResultCell")
+        }
+        
+        let result = results[indexPath.row]
+        cell.nameLabel.text = result.trackName
+        cell.categoryLabel.text = result.primaryGenreName
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return 5
+        return results.count
+    }
+    
+    // MARK: - Public
+    func setManager(manager: Manager) {
+        self.manager = manager
+    }
+    
+    func fetchItunesApps() {
+        manager.fetchITunesApps() { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            
+            switch result {
+            case .success(let result):
+                self.results = result.results
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
 }
