@@ -61,9 +61,7 @@ class SearchResultCell: UICollectionViewCell {
         return button
     }()
     
-    lazy var screenshot1ImageView = createScreenshotImageView()
-    lazy var screenshot2ImageView = createScreenshotImageView()
-    lazy var screenshot3ImageView = createScreenshotImageView()
+    lazy var overallStackView = VerticalStackView()
  
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -76,15 +74,10 @@ class SearchResultCell: UICollectionViewCell {
         ], spacing: 12)
         infoTopStackView.alignment = .center
         
-        let screenshotStackView = HorizontalStackView(arrangedSubviews: [
-            screenshot1ImageView, screenshot2ImageView, screenshot3ImageView
-        ], spacing: 12)
-        screenshotStackView.distribution = .fillEqually
-        
-        let overallStackView = VerticalStackView(arrangedSubviews: [
-            infoTopStackView, screenshotStackView
+        overallStackView = VerticalStackView(arrangedSubviews: [
+            infoTopStackView
         ], spacing: 10)
-
+        
         addSubview(overallStackView)
         
         let padding: CGFloat = 16
@@ -93,6 +86,14 @@ class SearchResultCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Public
+    func updateScreenshots(_ screenshots: [UIImageView]) {
+        let screenshotStackView = HorizontalStackView(arrangedSubviews: screenshots, spacing: 10)
+        screenshotStackView.distribution = .fillEqually
+        
+        overallStackView.addArrangedSubview(screenshotStackView)
     }
     
     // MARK: - Private

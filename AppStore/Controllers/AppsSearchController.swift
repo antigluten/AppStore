@@ -54,7 +54,26 @@ class AppsSearchController: UICollectionViewController {
         cell.nameLabel.text = result.trackName
         cell.categoryLabel.text = result.primaryGenreName
         
-        imageLoader.loadImage(with: result.artworkUrl100, to: cell.iconImageView)
+        imageLoader.setImage(with: result.artworkUrl100, to: cell.iconImageView)
+        
+        // MARK: - Refactor
+        var screenshots = [UIImageView]()
+        
+        let count = result.screenshotUrls.count
+        var limit = 1
+        
+        if count > 2 {
+            limit = 3
+        } else if count > 1 {
+            limit = 2
+        }
+        
+        for index in 0..<limit {
+            let url = result.screenshotUrls[index]
+            screenshots.append(imageLoader.loadImage(with: url))
+        }
+        
+        cell.updateScreenshots(screenshots)
 
         return cell
     }
