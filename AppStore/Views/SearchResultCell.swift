@@ -20,7 +20,8 @@ class SearchResultCell: UICollectionViewCell {
             imageView.heightAnchor.constraint(equalToConstant: 64)
         ])
         
-        imageView.layer.cornerRadius = 10
+        imageView.layer.cornerRadius = 16
+        imageView.clipsToBounds = true
         
         return imageView
     }()

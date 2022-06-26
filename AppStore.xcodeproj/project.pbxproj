@@ -21,6 +21,7 @@
 		A7E57D602864BE5A0051C82C /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */; };
 		A7E57D63286502180051C82C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E57D62286502180051C82C /* SearchResultCell.swift */; };
 		A7FE7FFE2868D08100F7F5B9 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFD2868D08100F7F5B9 /* Manager.swift */; };
+		A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */; };
 		C0ECB1838F13210A94DD0155 /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C7D46B6E2A33A8F2FCD41 /* Pods_AppStore.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,7 @@
 		A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		A7E57D62286502180051C82C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 		A7FE7FFD2868D08100F7F5B9 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		FB24C7DB0AE5940EAF536DA8 /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 				A7B719782866182400F8BB55 /* UIView+Layout.swift */,
 				A7B7197A2866440400F8BB55 /* VerticalStackView.swift */,
 				A7B7197C286648DF00F8BB55 /* HorizontalStackView.swift */,
+				A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -96,8 +99,8 @@
 		A7B719812866F94C00F8BB55 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				A7B719822866FA2800F8BB55 /* NetworkManager.swift */,
 				A7FE7FFD2868D08100F7F5B9 /* Manager.swift */,
+				A7B719822866FA2800F8BB55 /* NetworkManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				A7C0F93828622E0000324C4D /* AppDelegate.swift in Sources */,
 				A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */,
+				A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */,
 				A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */,
 				A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */,
 				A7B719802866F8BE00F8BB55 /* SearchResult.swift in Sources */,

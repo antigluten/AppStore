@@ -17,4 +17,7 @@ struct ResultEntity: Decodable {
     let primaryGenreName: String
     var averageUserRating: Float?
     let description: String
+    
+    let screenshotUrls: [String]
+    let artworkUrl100: String
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
  
 class AppsSearchController: UICollectionViewController {
     
@@ -15,10 +16,12 @@ class AppsSearchController: UICollectionViewController {
     // MARK: - Variables
     private var results = [ResultEntity]()
     private var manager: Manager
+    private var imageLoader: ImageLoader
     
     // MARK: - Initialization
-    init(manager: Manager) {
+    init(manager: Manager, imageLoader: ImageLoader) {
         self.manager = manager
+        self.imageLoader = imageLoader
         // Not sure that it's good to do like this.
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -51,6 +54,8 @@ class AppsSearchController: UICollectionViewController {
         cell.nameLabel.text = result.trackName
         cell.categoryLabel.text = result.primaryGenreName
         
+        imageLoader.loadImage(with: result.artworkUrl100, to: cell.iconImageView)
+
         return cell
     }
     
@@ -59,10 +64,6 @@ class AppsSearchController: UICollectionViewController {
     }
     
     // MARK: - Public
-    func setManager(manager: Manager) {
-        self.manager = manager
-    }
-    
     func fetchItunesApps() {
         manager.fetchITunesApps() { [weak self] result in
             guard let self = self else {
