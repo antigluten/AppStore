@@ -12,9 +12,9 @@ class AppsSearchController: UICollectionViewController {
     // MARK: - Identifier
     fileprivate let cellId = "AppsSearchController"
     
-    private var results = [SearchItem]()
+    // MARK: - Variables
+    private var results = [ResultEntity]()
     private var manager: Manager
-    
     
     // MARK: - Initialization
     init(manager: Manager) {
@@ -42,7 +42,6 @@ class AppsSearchController: UICollectionViewController {
     
     
     // MARK: - Data source methods
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SearchResultCell else {
             fatalError("Not a SearchResultCell")
@@ -87,7 +86,6 @@ class AppsSearchController: UICollectionViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension AppsSearchController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return .init(width: view.frame.width, height: 350)

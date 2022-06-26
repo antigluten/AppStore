@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol Manager {
-    func fetchITunesApps(completion: @escaping( Result<SearchResult, Error>) -> ())
-}
-
 class NetworkManager: Manager {
     enum NetworkErrors: String, Error {
         case invalidURL

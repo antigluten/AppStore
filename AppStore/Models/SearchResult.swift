@@ -9,10 +9,10 @@ import Foundation
 
 struct SearchResult: Decodable {
     let resultCount: Int
-    let results: [SearchItem]
+    let results: [ResultEntity]
 }
 
-struct SearchItem: Decodable {
+struct ResultEntity: Decodable {
     let trackName: String
     let primaryGenreName: String
     var averageUserRating: Float?
