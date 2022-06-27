@@ -9,8 +9,26 @@ import UIKit
 
 class SearchResultCell: UICollectionViewCell {
     
-    // MARK: - Views
+    var appResult: ResultEntity! {
+        didSet {
+            nameLabel.text = appResult.trackName
+            categoryLabel.text = appResult.primaryGenreName
+            
+            let url = URL(string: appResult.artworkUrl100)
+            iconImageView.sd_setImage(with: url)
+            
+            screenshot1ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[0]))
+            if appResult.screenshotUrls.count > 1 {
+                screenshot2ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[1]))
+            }
+            
+            if appResult.screenshotUrls.count > 2 {
+                screenshot3ImageView.sd_setImage(with: URL(string: appResult.screenshotUrls[2]))
+            }
+        }
+    }
     
+    // MARK: - Views
     let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .red
@@ -61,7 +79,9 @@ class SearchResultCell: UICollectionViewCell {
         return button
     }()
     
-    lazy var overallStackView = VerticalStackView()
+    lazy var screenshot1ImageView = createScreenshotImageView()
+    lazy var screenshot2ImageView = createScreenshotImageView()
+    lazy var screenshot3ImageView = createScreenshotImageView()
  
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -74,13 +94,18 @@ class SearchResultCell: UICollectionViewCell {
         ], spacing: 12)
         infoTopStackView.alignment = .center
         
-        overallStackView = VerticalStackView(arrangedSubviews: [
-            infoTopStackView
+        let screenshotsStackView = HorizontalStackView(arrangedSubviews: [
+            screenshot1ImageView, screenshot2ImageView, screenshot3ImageView
+        ], spacing: 12)
+        screenshotsStackView.distribution = .fillEqually
+        
+        let overallStackView = VerticalStackView(arrangedSubviews: [
+            infoTopStackView, screenshotsStackView
         ], spacing: 10)
         
         addSubview(overallStackView)
         
-        let padding: CGFloat = 16
+        let padding: CGFloat = 12
         overallStackView.fillSuperview(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
     }
     
@@ -88,18 +113,15 @@ class SearchResultCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Public
-    func updateScreenshots(_ screenshots: [UIImageView]) {
-        let screenshotStackView = HorizontalStackView(arrangedSubviews: screenshots, spacing: 10)
-        screenshotStackView.distribution = .fillEqually
-        
-        overallStackView.addArrangedSubview(screenshotStackView)
-    }
-    
     // MARK: - Private
     func createScreenshotImageView() -> UIImageView {
         let imageView = UIImageView()
         imageView.backgroundColor = .orange
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
+        imageView.layer.borderWidth = 0.5
+        imageView.layer.borderColor = UIColor(white: 0.5, alpha: 1).cgColor
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }
 }
