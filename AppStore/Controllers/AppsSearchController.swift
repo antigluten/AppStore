@@ -6,19 +6,22 @@
 //
 
 import UIKit
+import SDWebImage
  
 class AppsSearchController: UICollectionViewController {
     
     // MARK: - Identifier
     fileprivate let cellId = "AppsSearchController"
     
-    private var results = [SearchItem]()
+    // MARK: - Variables
+    private var results = [ResultEntity]()
     private var manager: Manager
-    
+    private var imageLoader: ImageLoader
     
     // MARK: - Initialization
-    init(manager: Manager) {
+    init(manager: Manager, imageLoader: ImageLoader) {
         self.manager = manager
+        self.imageLoader = imageLoader
         // Not sure that it's good to do like this.
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
@@ -42,16 +45,13 @@ class AppsSearchController: UICollectionViewController {
     
     
     // MARK: - Data source methods
-    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SearchResultCell else {
             fatalError("Not a SearchResultCell")
         }
         
-        let result = results[indexPath.row]
-        cell.nameLabel.text = result.trackName
-        cell.categoryLabel.text = result.primaryGenreName
-        
+        cell.appResult = results[indexPath.item]
+
         return cell
     }
     
@@ -60,10 +60,6 @@ class AppsSearchController: UICollectionViewController {
     }
     
     // MARK: - Public
-    func setManager(manager: Manager) {
-        self.manager = manager
-    }
-    
     func fetchItunesApps() {
         manager.fetchITunesApps() { [weak self] result in
             guard let self = self else {
@@ -87,7 +83,6 @@ class AppsSearchController: UICollectionViewController {
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension AppsSearchController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return .init(width: view.frame.width, height: 350)

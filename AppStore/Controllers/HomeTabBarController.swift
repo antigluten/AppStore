@@ -9,7 +9,6 @@ import UIKit
 
 class HomeTabBarController: UITabBarController {
     
-    
     // MARK: - Internal
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,10 +17,9 @@ class HomeTabBarController: UITabBarController {
         viewControllers = [
             createNavController(viewController: UIViewController(), title: "Today", imageName: "today_icon"),
             createNavController(viewController: UIViewController(), title: "Apps", imageName: "apps"),
-            createNavController(viewController: AppsSearchController(manager: NetworkManager()), title: "Search", imageName: "search")
+            createNavController(viewController: AppsSearchController(manager: NetworkManager(), imageLoader: ImageLoader()), title: "Search", imageName: "search")
         ]
     }
-    
     
     // MARK: - Fileprivate
     // Is is like a factory method?
