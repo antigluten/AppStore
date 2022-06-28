@@ -24,7 +24,7 @@ class HomeTabBarController: UITabBarController {
     // MARK: - Fileprivate
     // Is is like a factory method?
     fileprivate func createNavController(viewController: UIViewController, title: String, imageName: String) -> UIViewController {
-        viewController.view.backgroundColor = .white
+        viewController.view.backgroundColor = .systemBackground
         viewController.navigationItem.title = title
         
         let navController = UINavigationController(rootViewController: viewController)

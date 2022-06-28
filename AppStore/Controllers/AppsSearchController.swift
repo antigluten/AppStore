@@ -11,12 +11,16 @@ import SDWebImage
 class AppsSearchController: UICollectionViewController {
     
     // MARK: - Identifier
-    fileprivate let cellId = "AppsSearchController"
+    private let cellId = "AppsSearchController"
     
     // MARK: - Variables
     private var results = [ResultEntity]()
     private var manager: Manager
     private var imageLoader: ImageLoader
+    
+    private var timer: Timer?
+    
+    private lazy var searchController = UISearchController()
     
     // MARK: - Initialization
     init(manager: Manager, imageLoader: ImageLoader) {
@@ -36,11 +40,7 @@ class AppsSearchController: UICollectionViewController {
         
         collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
         
-        fetchItunesApps()
-        
-        // MARK: - Search Controller
-        navigationItem.searchController = UISearchController()
-        navigationItem.hidesSearchBarWhenScrolling = false
+        setupSearchBar()
     }
     
     
@@ -61,7 +61,7 @@ class AppsSearchController: UICollectionViewController {
     
     // MARK: - Public
     func fetchItunesApps() {
-        manager.fetchITunesApps() { [weak self] result in
+        manager.fetchITunesApps(searchTerm: "Twitter") { [weak self] result in
             guard let self = self else {
                 return
             }
@@ -78,6 +78,14 @@ class AppsSearchController: UICollectionViewController {
         }
     }
     
+    // MARK: - Private
+    private func setupSearchBar() {
+        definesPresentationContext = true
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
@@ -86,5 +94,31 @@ extension AppsSearchController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return .init(width: view.frame.width, height: 350)
+    }
+}
+
+// MARK: - SearchBarDelegate
+extension AppsSearchController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        timer?.invalidate()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            
+            self.manager.fetchITunesApps(searchTerm: searchText) { result in
+                switch result {
+                case .success(let result):
+                    self.results = result.results
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        })
     }
 }

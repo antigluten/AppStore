@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Manager {
-    func fetchITunesApps(completion: @escaping( Result<SearchResult, Error>) -> ())
+    func fetchITunesApps(searchTerm: String, completion: @escaping( Result<SearchResult, Error>) -> ())
 }
