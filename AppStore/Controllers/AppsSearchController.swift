@@ -84,7 +84,7 @@ class AppsSearchController: UICollectionViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
+        searchController.searchResultsUpdater = self
     }
 }
 
@@ -98,17 +98,20 @@ extension AppsSearchController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - SearchBarDelegate
-extension AppsSearchController: UISearchBarDelegate {
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+extension AppsSearchController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
         timer?.invalidate()
         
-        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
             guard let self = self else {
                 return
             }
             
-            self.manager.fetchITunesApps(searchTerm: searchText) { result in
+            self.manager.fetchITunesApps(searchTerm: text) { result in
                 switch result {
                 case .success(let result):
                     self.results = result.results
@@ -119,6 +122,6 @@ extension AppsSearchController: UISearchBarDelegate {
                     print(error)
                 }
             }
-        })
+        }
     }
 }
