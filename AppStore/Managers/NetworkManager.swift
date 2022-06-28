@@ -23,8 +23,8 @@ class NetworkManager: Manager {
         
     }
     
-    func fetchITunesApps(completion: @escaping (Result<SearchResult, Error>) -> Void) {
-        let url = "https://itunes.apple.com/search?term=instagram&entity=software"
+    func fetchITunesApps(searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> Void) {
+        let url = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
         
         guard let url = URL(string: url) else {
             completion(.failure(NetworkErrors.invalidURL))
