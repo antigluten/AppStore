@@ -77,6 +77,42 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A73631DB286C30C50048511F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A7E57D5E2864BE1F0051C82C /* Controllers */,
+				A7B719812866F94C00F8BB55 /* Managers */,
+				A7B719772866181200F8BB55 /* Helpers */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A73631DE286C30E80048511F /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A7B7197E2866F57600F8BB55 /* Models */,
+				A73631E0286C31190048511F /* Controllers */,
+				A73631DF286C31100048511F /* Views */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		A73631DF286C31100048511F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A7E57D62286502180051C82C /* SearchResultCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A73631E0286C31190048511F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		A7B719772866181200F8BB55 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,11 +162,8 @@
 		A7C0F93628622E0000324C4D /* AppStore */ = {
 			isa = PBXGroup;
 			children = (
-				A7B719812866F94C00F8BB55 /* Managers */,
-				A7B719772866181200F8BB55 /* Helpers */,
-				A7B7197E2866F57600F8BB55 /* Models */,
-				A7E57D61286501FC0051C82C /* Views */,
-				A7E57D5E2864BE1F0051C82C /* Controllers */,
+				A73631DB286C30C50048511F /* Core */,
+				A73631DE286C30E80048511F /* Search */,
 				A7C0F93728622E0000324C4D /* AppDelegate.swift */,
 				A7C0F93928622E0000324C4D /* SceneDelegate.swift */,
 				A7C0F93D28622E0000324C4D /* Main.storyboard */,
@@ -145,17 +178,9 @@
 			isa = PBXGroup;
 			children = (
 				A7C0F94B28622EF000324C4D /* HomeTabBarController.swift */,
-				A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */,
 			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		A7E57D61286501FC0051C82C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				A7E57D62286502180051C82C /* SearchResultCell.swift */,
-			);
-			path = Views;
+			name = Controllers;
+			path = ../Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
