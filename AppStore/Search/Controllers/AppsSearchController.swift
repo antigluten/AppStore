@@ -11,7 +11,7 @@ import SDWebImage
 class AppsSearchController: UICollectionViewController {
     
     // MARK: - Identifier
-    private let cellId = "AppsSearchController"
+    private static let identifier = "AppsSearchController"
     
     // MARK: - Variables
     private var results = [ResultEntity]()
@@ -38,7 +38,7 @@ class AppsSearchController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView.register(SearchResultCell.self, forCellWithReuseIdentifier: AppsSearchController.identifier)
         
         setupSearchBar()
     }
@@ -46,7 +46,7 @@ class AppsSearchController: UICollectionViewController {
     
     // MARK: - Data source methods
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? SearchResultCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsSearchController.identifier, for: indexPath) as? SearchResultCell else {
             fatalError("Not a SearchResultCell")
         }
         
