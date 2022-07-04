@@ -12,7 +12,6 @@ class AppsController: UICollectionViewController {
     private static let identifier = "AppsController"
     
     init() {
-        
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
     }
     

@@ -25,6 +25,7 @@
 		A7FE7FFE2868D08100F7F5B9 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFD2868D08100F7F5B9 /* Manager.swift */; };
 		A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */; };
 		A7FF62CE287383BC00BEBA5F /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF62CD287383BC00BEBA5F /* AppCell.swift */; };
+		A7FF62D0287387FA00BEBA5F /* AppsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF62CF287387FA00BEBA5F /* AppsHorizontalController.swift */; };
 		C0ECB1838F13210A94DD0155 /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C7D46B6E2A33A8F2FCD41 /* Pods_AppStore.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		A7FE7FFD2868D08100F7F5B9 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		A7FF62CD287383BC00BEBA5F /* AppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
+		A7FF62CF287387FA00BEBA5F /* AppsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalController.swift; sourceTree = "<group>"; };
 		FB24C7DB0AE5940EAF536DA8 /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				A73631E2286C31AD0048511F /* AppsController.swift */,
+				A7FF62CF287387FA00BEBA5F /* AppsHorizontalController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				A7FF62CE287383BC00BEBA5F /* AppCell.swift in Sources */,
 				A7C0F93828622E0000324C4D /* AppDelegate.swift in Sources */,
 				A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */,
+				A7FF62D0287387FA00BEBA5F /* AppsHorizontalController.swift in Sources */,
 				A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */,
 				A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */,
 				A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */,

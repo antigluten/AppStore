@@ -18,20 +18,12 @@ class AppsGroupCell: UICollectionViewCell {
         return view
     }()
     
-    let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.register(AppCell.self, forCellWithReuseIdentifier: AppCell.identifier)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let horizontalController = AppsHorizontalController()
  
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        collectionView.delegate = self
+        
     }
     
     required init?(coder: NSCoder) {
@@ -40,10 +32,12 @@ class AppsGroupCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         addSubview(header)
-        addSubview(collectionView)
         
         layoutHeader()
-        layoutCollectionView()
+        
+        addSubview(horizontalController.view)
+        horizontalController.view.anchor(top: header.bottomAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        
     }
     
     private func layoutHeader() {
@@ -54,31 +48,5 @@ class AppsGroupCell: UICollectionViewCell {
             header.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
-    private func layoutCollectionView() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: header.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: 100)
-        ])
-    }
-}
 
-extension AppsGroupCell: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCell.identifier, for: indexPath)
-        cell.backgroundColor = .systemPink
-        return cell
-    }
-}
-
-extension AppsGroupCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: 200, height: 50)
-    }
 }
