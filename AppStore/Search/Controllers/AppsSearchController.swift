@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
  
-class AppsSearchController: UICollectionViewController {
+class AppsSearchController: BaseListController {
     
     // MARK: - Identifier
     private static let identifier = "AppsSearchController"
@@ -27,7 +27,7 @@ class AppsSearchController: UICollectionViewController {
         self.manager = manager
         self.imageLoader = imageLoader
         // Not sure that it's good to do like this.
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        super.init()
     }
     
     required init?(coder: NSCoder) {

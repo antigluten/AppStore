@@ -7,21 +7,16 @@
 
 import UIKit
 
-class AppsHorizontalController: UICollectionViewController {
+class AppsHorizontalController: BaseListController {
     static let identifier = "AppsHorizontalController"
-
-    init() {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+    
+    override func viewDidLoad() {
         collectionView.backgroundColor = .systemPink
         collectionView.register(AppCell.self, forCellWithReuseIdentifier: AppCell.identifier)
         
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

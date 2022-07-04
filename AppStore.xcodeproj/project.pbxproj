@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A71ED43E28738B9D00EE1D9A /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71ED43D28738B9D00EE1D9A /* BaseListController.swift */; };
 		A73631E3286C31AD0048511F /* AppsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73631E2286C31AD0048511F /* AppsController.swift */; };
 		A73631E7286C31EA0048511F /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73631E6286C31EA0048511F /* AppsGroupCell.swift */; };
 		A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B719782866182400F8BB55 /* UIView+Layout.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		158597E88AEE7CA514FF6600 /* Pods-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.release.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		9B8C7D46B6E2A33A8F2FCD41 /* Pods_AppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A71ED43D28738B9D00EE1D9A /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		A73631E2286C31AD0048511F /* AppsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsController.swift; sourceTree = "<group>"; };
 		A73631E6286C31EA0048511F /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
 		A7B719782866182400F8BB55 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				A7C0F94B28622EF000324C4D /* HomeTabBarController.swift */,
+				A71ED43D28738B9D00EE1D9A /* BaseListController.swift */,
 			);
 			name = Controllers;
 			path = ../Controllers;
@@ -346,6 +349,7 @@
 				A7E57D63286502180051C82C /* SearchResultCell.swift in Sources */,
 				A73631E3286C31AD0048511F /* AppsController.swift in Sources */,
 				A7C0F93A28622E0000324C4D /* SceneDelegate.swift in Sources */,
+				A71ED43E28738B9D00EE1D9A /* BaseListController.swift in Sources */,
 				A7FE7FFE2868D08100F7F5B9 /* Manager.swift in Sources */,
 				A7B7197B2866440400F8BB55 /* VerticalStackView.swift in Sources */,
 				A73631E7286C31EA0048511F /* AppsGroupCell.swift in Sources */,
