@@ -23,9 +23,12 @@
 		A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C0F94B28622EF000324C4D /* HomeTabBarController.swift */; };
 		A7E57D602864BE5A0051C82C /* AppsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */; };
 		A7E57D63286502180051C82C /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E57D62286502180051C82C /* SearchResultCell.swift */; };
+		A7E9D70228744AEA00A68B09 /* UILabel+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9D70128744AEA00A68B09 /* UILabel+Init.swift */; };
+		A7E9D70528744C1500A68B09 /* UIImageView+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9D70428744C1500A68B09 /* UIImageView+Init.swift */; };
+		A7E9D70728744C7700A68B09 /* UIButton+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E9D70628744C7700A68B09 /* UIButton+Init.swift */; };
 		A7FE7FFE2868D08100F7F5B9 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFD2868D08100F7F5B9 /* Manager.swift */; };
 		A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */; };
-		A7FF62CE287383BC00BEBA5F /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF62CD287383BC00BEBA5F /* AppCell.swift */; };
+		A7FF62CE287383BC00BEBA5F /* AppRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF62CD287383BC00BEBA5F /* AppRowCell.swift */; };
 		A7FF62D0287387FA00BEBA5F /* AppsHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FF62CF287387FA00BEBA5F /* AppsHorizontalController.swift */; };
 		C0ECB1838F13210A94DD0155 /* Pods_AppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B8C7D46B6E2A33A8F2FCD41 /* Pods_AppStore.framework */; };
 /* End PBXBuildFile section */
@@ -51,9 +54,12 @@
 		A7C0F94B28622EF000324C4D /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		A7E57D5F2864BE5A0051C82C /* AppsSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsSearchController.swift; sourceTree = "<group>"; };
 		A7E57D62286502180051C82C /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		A7E9D70128744AEA00A68B09 /* UILabel+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Init.swift"; sourceTree = "<group>"; };
+		A7E9D70428744C1500A68B09 /* UIImageView+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Init.swift"; sourceTree = "<group>"; };
+		A7E9D70628744C7700A68B09 /* UIButton+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Init.swift"; sourceTree = "<group>"; };
 		A7FE7FFD2868D08100F7F5B9 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		A7FF62CD287383BC00BEBA5F /* AppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
+		A7FF62CD287383BC00BEBA5F /* AppRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRowCell.swift; sourceTree = "<group>"; };
 		A7FF62CF287387FA00BEBA5F /* AppsHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsHorizontalController.swift; sourceTree = "<group>"; };
 		FB24C7DB0AE5940EAF536DA8 /* Pods-AppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.debug.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,7 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				A73631E6286C31EA0048511F /* AppsGroupCell.swift */,
-				A7FF62CD287383BC00BEBA5F /* AppCell.swift */,
+				A7FF62CD287383BC00BEBA5F /* AppRowCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,7 +159,7 @@
 		A7B719772866181200F8BB55 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				A7B719782866182400F8BB55 /* UIView+Layout.swift */,
+				A7E9D70328744B7E00A68B09 /* Extensions */,
 				A7B7197A2866440400F8BB55 /* VerticalStackView.swift */,
 				A7B7197C286648DF00F8BB55 /* HorizontalStackView.swift */,
 				A7FE7FFF2868DAE500F7F5B9 /* ImageLoader.swift */,
@@ -220,6 +226,17 @@
 			);
 			name = Controllers;
 			path = ../Controllers;
+			sourceTree = "<group>";
+		};
+		A7E9D70328744B7E00A68B09 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A7E9D70128744AEA00A68B09 /* UILabel+Init.swift */,
+				A7B719782866182400F8BB55 /* UIView+Layout.swift */,
+				A7E9D70428744C1500A68B09 /* UIImageView+Init.swift */,
+				A7E9D70628744C7700A68B09 /* UIButton+Init.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,15 +354,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A7FF62CE287383BC00BEBA5F /* AppCell.swift in Sources */,
+				A7FF62CE287383BC00BEBA5F /* AppRowCell.swift in Sources */,
 				A7C0F93828622E0000324C4D /* AppDelegate.swift in Sources */,
+				A7E9D70228744AEA00A68B09 /* UILabel+Init.swift in Sources */,
 				A7B719792866182400F8BB55 /* UIView+Layout.swift in Sources */,
+				A7E9D70528744C1500A68B09 /* UIImageView+Init.swift in Sources */,
 				A7FF62D0287387FA00BEBA5F /* AppsHorizontalController.swift in Sources */,
 				A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */,
 				A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */,
 				A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */,
 				A7B719802866F8BE00F8BB55 /* SearchResult.swift in Sources */,
 				A7E57D602864BE5A0051C82C /* AppsSearchController.swift in Sources */,
+				A7E9D70728744C7700A68B09 /* UIButton+Init.swift in Sources */,
 				A7E57D63286502180051C82C /* SearchResultCell.swift in Sources */,
 				A73631E3286C31AD0048511F /* AppsController.swift in Sources */,
 				A7C0F93A28622E0000324C4D /* SceneDelegate.swift in Sources */,

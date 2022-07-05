@@ -14,7 +14,6 @@ class AppsHorizontalController: BaseListController {
     private let lineSpacing: CGFloat = 10
     
     override func viewDidLoad() {
-        collectionView.backgroundColor = .systemPink
         collectionView.register(AppCell.self, forCellWithReuseIdentifier: AppCell.identifier)
         
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
@@ -28,15 +27,16 @@ class AppsHorizontalController: BaseListController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCell.identifier, for: indexPath)
-        cell.backgroundColor = .yellow
+        
         return cell
     }
 }
 
 extension AppsHorizontalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width - 2 * 20
         let height = (view.frame.height - 2 * topBottomPadding - 2 * lineSpacing) / 3
-        return .init(width: view.frame.width, height: height)
+        return .init(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
