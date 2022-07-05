@@ -1,5 +1,5 @@
 //
-//  AppCell.swift
+//  AppRowCell.swift
 //  AppStore
 //
 //  Created by Vladimir Gusev on 04.07.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class AppCell: UICollectionViewCell {
-    static let identifier = "AppCell"
+class AppRowCell: UICollectionViewCell {
+    static let identifier = "AppRowCell"
     
     let imageView = UIImageView(cornerRadius: 12)
     
@@ -26,6 +26,7 @@ class AppCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
+//        super.layoutSubviews()
         imageView.backgroundColor = .purple
         
         NSLayoutConstraint.activate([

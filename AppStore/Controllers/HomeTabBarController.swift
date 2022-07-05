@@ -16,7 +16,7 @@ class HomeTabBarController: UITabBarController {
         
         viewControllers = [
             createNavController(viewController: UIViewController(), title: "Today", imageName: "today_icon"),
-            createNavController(viewController: AppsController(), title: "Apps", imageName: "apps"),
+            createNavController(viewController: AppsPageController(), title: "Apps", imageName: "apps"),
             createNavController(viewController: AppsSearchController(manager: NetworkManager(), imageLoader: ImageLoader()), title: "Search", imageName: "search")
         ]
     }
