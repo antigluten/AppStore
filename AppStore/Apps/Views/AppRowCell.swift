@@ -15,7 +15,7 @@ class AppCell: UICollectionViewCell {
     let appLabel = UILabel(text: "App Name", font: .systemFont(ofSize: 16))
     let companyLabel = UILabel(text: "Company name", font: .systemFont(ofSize: 12))
     
-    let getButton = UIButton(title: "GET")
+    let getButton = UIButton(title: "GET", font: .boldSystemFont(ofSize: 16))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,11 +33,8 @@ class AppCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: 64)
         ])
         
-        getButton.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        getButton.titleLabel?.font = .boldSystemFont(ofSize: 16)
         getButton.constrainWidth(constant: 80)
         getButton.constrainHeight(constant: 32)
-        getButton.layer.cornerRadius = 16
         
         let verticalStackView = VerticalStackView(arrangedSubviews: [appLabel, companyLabel], spacing: 4)
         
