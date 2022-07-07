@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A700F6332876EAA200BAD18F /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = A700F6322876EAA200BAD18F /* AppGroup.swift */; };
 		A71ED43E28738B9D00EE1D9A /* BaseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71ED43D28738B9D00EE1D9A /* BaseListController.swift */; };
 		A73631E3286C31AD0048511F /* AppsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73631E2286C31AD0048511F /* AppsPageController.swift */; };
 		A73631E7286C31EA0048511F /* AppsGroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73631E6286C31EA0048511F /* AppsGroupCell.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		158597E88AEE7CA514FF6600 /* Pods-AppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppStore.release.xcconfig"; path = "Target Support Files/Pods-AppStore/Pods-AppStore.release.xcconfig"; sourceTree = "<group>"; };
 		9B8C7D46B6E2A33A8F2FCD41 /* Pods_AppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A700F6322876EAA200BAD18F /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
 		A71ED43D28738B9D00EE1D9A /* BaseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseListController.swift; sourceTree = "<group>"; };
 		A73631E2286C31AD0048511F /* AppsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsPageController.swift; sourceTree = "<group>"; };
 		A73631E6286C31EA0048511F /* AppsGroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsGroupCell.swift; sourceTree = "<group>"; };
@@ -99,6 +101,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A700F6312876EA9300BAD18F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A700F6322876EAA200BAD18F /* AppGroup.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		A73631DB286C30C50048511F /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +148,7 @@
 		A73631E1286C318F0048511F /* Apps */ = {
 			isa = PBXGroup;
 			children = (
+				A700F6312876EA9300BAD18F /* Models */,
 				A73631E5286C31C40048511F /* Views */,
 				A73631E4286C31BB0048511F /* Controllers */,
 			);
@@ -233,8 +244,7 @@
 				A7C0F94B28622EF000324C4D /* HomeTabBarController.swift */,
 				A71ED43D28738B9D00EE1D9A /* BaseListController.swift */,
 			);
-			name = Controllers;
-			path = ../Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		A7E9D70328744B7E00A68B09 /* Extensions */ = {
@@ -370,6 +380,7 @@
 				A7E9D70528744C1500A68B09 /* UIImageView+Init.swift in Sources */,
 				A7FF62D0287387FA00BEBA5F /* AppsHorizontalController.swift in Sources */,
 				A7FE80002868DAE500F7F5B9 /* ImageLoader.swift in Sources */,
+				A700F6332876EAA200BAD18F /* AppGroup.swift in Sources */,
 				A7B719832866FA2800F8BB55 /* NetworkManager.swift in Sources */,
 				A7C0F94C28622EF000324C4D /* HomeTabBarController.swift in Sources */,
 				A7B719802866F8BE00F8BB55 /* SearchResult.swift in Sources */,

@@ -44,3 +44,7 @@ extension AppsHeaderHorizontalController: UICollectionViewDelegateFlowLayout {
         return .init(top: 12, left: 16, bottom: 12, right: 16)
     }
 }
+
+extension AppsHeaderHorizontalController: UITableViewDelegate {
+    
+}

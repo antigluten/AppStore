@@ -9,14 +9,39 @@ import UIKit
 
 class AppsPageController: BaseListController {
     
-    private static let identifier = "AppsPageController"
-    private static let headerIdentifier = "AppsPageControllerHeader"
+    var manager: Manager? {
+        didSet {
+            fetchAppsData()
+        }
+    }
+    
+    static let identifier = "AppsPageController"
+    static let headerIdentifier = "AppsPageControllerHeader"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsPageController.identifier)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageController.headerIdentifier)
+        
+        // MARK: - Fetching Data
+        fetchAppsData()
+    }
+    
+    private func fetchAppsData() {
+        if manager == nil {
+            print("fuck")
+        }
+        manager?.fetchGames(completion: { [weak self] result in
+            switch result {
+            case .success(let group):
+                print(group)
+                
+            case .failure(let error):
+                print(error)
+                
+            }
+        })
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

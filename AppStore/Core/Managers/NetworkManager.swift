@@ -52,4 +52,31 @@ class NetworkManager: Manager {
         
         task.resume()
     }
+    
+    func fetchGames(completion: @escaping (Result<AppGroup, Error>) -> ()) {
+        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/25/apps.json") else {
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                completion(.failure(NetworkErrors.failedFetchingData))
+                return
+            }
+            
+            guard let data = data else {
+                completion(.failure(NetworkErrors.invalidData))
+                return
+            }
+
+            guard let decodedData = try? JSONDecoder().decode(AppGroup.self, from: data) else {
+                completion(.failure(NetworkErrors.failedToDecode))
+                return
+            }
+            
+            completion(.success(decodedData))
+        }
+        
+        task.resume()
+    }
 }
