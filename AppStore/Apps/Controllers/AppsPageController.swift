@@ -15,6 +15,8 @@ class AppsPageController: BaseListController {
         }
     }
     
+    private var group: AppGroup?
+    
     static let identifier = "AppsPageController"
     static let headerIdentifier = "AppsPageControllerHeader"
     
@@ -35,7 +37,10 @@ class AppsPageController: BaseListController {
         manager?.fetchGames(completion: { [weak self] result in
             switch result {
             case .success(let group):
-                print(group)
+                self?.group = group
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
                 
             case .failure(let error):
                 print(error)
@@ -45,11 +50,18 @@ class AppsPageController: BaseListController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 1
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsPageController.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsPageController.identifier, for: indexPath) as? AppsGroupCell else { return UICollectionViewCell() }
+        
+        cell.titleLabel.text = group?.feed.title
+        
+        if let results = group?.feed.results {
+            cell.horizontalController.results = results
+        }
+        
         return cell
     }
     

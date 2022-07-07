@@ -10,6 +10,8 @@ import UIKit
 class AppsHorizontalController: BaseListController {
     static let identifier = "AppsHorizontalController"
     
+    var results = [FeedResult]()
+    
     private let topBottomPadding: CGFloat = 12
     private let lineSpacing: CGFloat = 10
     
@@ -22,11 +24,19 @@ class AppsHorizontalController: BaseListController {
     }
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return results.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppRowCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppRowCell.identifier, for: indexPath) as? AppRowCell else {
+            return UICollectionViewCell()
+        }
+        
+        let model = results[indexPath.row]
+        
+        cell.appLabel.text = model.name
+        cell.companyLabel.text = model.artistName
+        cell.imageView.sd_setImage(with: URL(string: model.artworkUrl100))
         
         return cell
     }
