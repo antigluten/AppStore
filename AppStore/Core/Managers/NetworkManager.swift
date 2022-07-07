@@ -19,6 +19,11 @@ class NetworkManager: Manager {
         case search
     }
     
+    enum GameCategory: String, CaseIterable {
+        case topFree = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/25/apps.json"
+        case topPaid = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/25/apps.json"
+    }
+    
     func createQuery() {
         
     }
@@ -53,8 +58,8 @@ class NetworkManager: Manager {
         task.resume()
     }
     
-    func fetchGames(completion: @escaping (Result<AppGroup, Error>) -> ()) {
-        guard let url = URL(string: "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/25/apps.json") else {
+    func fetchGames(type: GameCategory, completion: @escaping (Result<AppGroup, Error>) -> ()) {
+        guard let url = URL(string: type.rawValue) else {
             return
         }
         

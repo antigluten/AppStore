@@ -9,5 +9,5 @@ import Foundation
 
 protocol Manager {
     func fetchITunesApps(searchTerm: String, completion: @escaping( Result<SearchResult, Error>) -> ())
-    func fetchGames(completion: @escaping (Result<AppGroup, Error>) -> ())
+    func fetchGames(type: NetworkManager.GameCategory, completion: @escaping (Result<AppGroup, Error>) -> ())
 }

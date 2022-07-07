@@ -15,7 +15,7 @@ class AppsPageController: BaseListController {
         }
     }
     
-    private var group: AppGroup?
+    private var groups = [AppGroup]()
     
     static let identifier = "AppsPageController"
     static let headerIdentifier = "AppsPageControllerHeader"
@@ -31,36 +31,57 @@ class AppsPageController: BaseListController {
     }
     
     private func fetchAppsData() {
-        if manager == nil {
-            print("fuck")
-        }
-        manager?.fetchGames(completion: { [weak self] result in
+        let dispatchGroup = DispatchGroup()
+        
+        manager?.fetchGames(type: .topFree) { [weak self] result in
+            dispatchGroup.enter()
+            defer {
+                dispatchGroup.leave()
+            }
+            
             switch result {
             case .success(let group):
-                self?.group = group
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
-                }
-                
+                self?.groups.append(group)
             case .failure(let error):
                 print(error)
                 
             }
-        })
+        }
+        
+        manager?.fetchGames(type: .topPaid) { [weak self] result in
+            dispatchGroup.enter()
+            defer {
+                dispatchGroup.leave()
+            }
+            
+            switch result {
+            case .success(let group):
+                self?.groups.append(group)
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
+    
+        
+        
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return groups.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsPageController.identifier, for: indexPath) as? AppsGroupCell else { return UICollectionViewCell() }
         
-        cell.titleLabel.text = group?.feed.title
-        
-        if let results = group?.feed.results {
-            cell.horizontalController.results = results
-        }
+        let feed = groups[indexPath.row].feed
+        cell.titleLabel.text = feed.title
+        cell.horizontalController.results = feed.results
         
         return cell
     }
@@ -73,8 +94,6 @@ class AppsPageController: BaseListController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .init(width: view.frame.width, height: 300)
     }
-    
-    
 }
 
 extension AppsPageController: UICollectionViewDelegateFlowLayout {
