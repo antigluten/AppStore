@@ -14,9 +14,7 @@ class HomeTabBarController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemMint
         
-        let controller = AppsPageController()
-        
-        let appsPageController = createViewController(viewController: controller, title: "Apps")
+        let appsPageController = createViewController(viewController: AppsPageController(), title: "Apps")
         
         if let vc = appsPageController as? AppsPageController {
             vc.manager = NetworkManager()
