@@ -10,12 +10,13 @@ import UIKit
 class AppsHorizontalController: BaseListController {
     static let identifier = "AppsHorizontalController"
     
+    var results = [FeedResult]()
+    
     private let topBottomPadding: CGFloat = 12
     private let lineSpacing: CGFloat = 10
     
     override func viewDidLoad() {
-        collectionView.backgroundColor = .systemPink
-        collectionView.register(AppCell.self, forCellWithReuseIdentifier: AppCell.identifier)
+        collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: AppRowCell.identifier)
         
         if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
@@ -23,20 +24,29 @@ class AppsHorizontalController: BaseListController {
     }
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return results.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppCell.identifier, for: indexPath)
-        cell.backgroundColor = .yellow
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppRowCell.identifier, for: indexPath) as? AppRowCell else {
+            return UICollectionViewCell()
+        }
+        
+        let model = results[indexPath.row]
+        
+        cell.appLabel.text = model.name
+        cell.companyLabel.text = model.artistName
+        cell.imageView.sd_setImage(with: URL(string: model.artworkUrl100))
+        
         return cell
     }
 }
 
 extension AppsHorizontalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = view.frame.width - 2 * 20
         let height = (view.frame.height - 2 * topBottomPadding - 2 * lineSpacing) / 3
-        return .init(width: view.frame.width, height: height)
+        return .init(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
