@@ -10,9 +10,9 @@ import UIKit
 class AppHeaderCell: UICollectionViewCell {
     static let identifier = "AppHeaderCell"
     
-    let changeLabel = UILabel(text: "FEATURED", font: .boldSystemFont(ofSize: 12))
-    let appNameLabel = UILabel(text: "AppName and some other information about something curious", font: .systemFont(ofSize: 22))
-    let imageView = UIImageView(cornerRadius: 6)
+    let companyNameLabel = UILabel(text: "FEATURED", font: .boldSystemFont(ofSize: 12))
+    let titleLabel = UILabel(text: "AppName and some other information about something curious", font: .systemFont(ofSize: 24))
+    let imageView = UIImageView(cornerRadius: 6, contentMode: .scaleAspectFill)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,19 +25,16 @@ class AppHeaderCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        appNameLabel.numberOfLines = 2
-        changeLabel.textColor = .link
-        
-        imageView.backgroundColor = .systemPink
+        titleLabel.numberOfLines = 2
+        companyNameLabel.textColor = .link
         
         let stack = VerticalStackView(arrangedSubviews: [
-            changeLabel,
-            appNameLabel,
+            companyNameLabel,
+            titleLabel,
             imageView
-        ], spacing: 12)
+        ], spacing: 4)
         
-//        stack.distribution = .equalSpacing
-        
+        stack.distribution = .equalCentering
         
         addSubview(stack)
         stack.fillSuperview(padding: .init(top: 16, left: 0, bottom: 0, right: 0))

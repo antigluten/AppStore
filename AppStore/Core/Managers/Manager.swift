@@ -10,4 +10,5 @@ import Foundation
 protocol Manager {
     func fetchITunesApps(searchTerm: String, completion: @escaping( Result<SearchResult, Error>) -> ())
     func fetchGames(type: NetworkManager.GameCategory, completion: @escaping (Result<AppGroup, Error>) -> ())
+    func fetchTrending(completion: @escaping (Result<[SocialApp], Error>) -> ())
 }

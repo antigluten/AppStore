@@ -8,6 +8,8 @@
 import UIKit
 
 class AppsHeaderHorizontalController: BaseListController {
+    
+    var socialApps = [SocialApp]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +23,19 @@ class AppsHeaderHorizontalController: BaseListController {
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return socialApps.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppHeaderCell.identifier, for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppHeaderCell.identifier, for: indexPath) as? AppHeaderCell else {
+            return UICollectionViewCell()
+        }
+        
+        let model = socialApps[indexPath.row]
+        
+        cell.imageView.sd_setImage(with: URL(string: model.imageUrl))
+        cell.titleLabel.text = model.tagline
+        cell.companyNameLabel.text = model.name
         
         return cell
     }
@@ -33,7 +43,7 @@ class AppsHeaderHorizontalController: BaseListController {
 
 extension AppsHeaderHorizontalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.width - 32 - 10, height: view.frame.height)
+        return .init(width: view.frame.width - 48, height: view.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -41,10 +51,6 @@ extension AppsHeaderHorizontalController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: 12, left: 16, bottom: 12, right: 16)
+        return .init(top: 0, left: 16, bottom: 0, right: 16)
     }
-}
-
-extension AppsHeaderHorizontalController: UITableViewDelegate {
-    
 }

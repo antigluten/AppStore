@@ -9,6 +9,14 @@ import UIKit
 
 class AppsPageController: BaseListController {
     
+    let activityIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(style: .large)
+        view.color = .black
+        view.startAnimating()
+        view.hidesWhenStopped = true
+        return view
+    }()
+    
     var manager: Manager? {
         didSet {
             fetchAppsData()
@@ -16,6 +24,7 @@ class AppsPageController: BaseListController {
     }
     
     private var groups = [AppGroup]()
+    private var socialApps = [SocialApp]()
     
     static let identifier = "AppsPageController"
     static let headerIdentifier = "AppsPageControllerHeader"
@@ -25,6 +34,9 @@ class AppsPageController: BaseListController {
         
         collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsPageController.identifier)
         collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageController.headerIdentifier)
+        
+        view.addSubview(activityIndicator)
+        activityIndicator.fillSuperview()
         
         // MARK: - Fetching Data
         fetchAppsData()
@@ -62,16 +74,30 @@ class AppsPageController: BaseListController {
                 
             }
         }
-    
         
+        manager?.fetchTrending { [weak self] result in
+            dispatchGroup.enter()
+            defer {
+                dispatchGroup.leave()
+            }
+            
+            switch result {
+            case .success(let socialApps):
+                self?.socialApps = socialApps
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
         
         dispatchGroup.notify(queue: .main) { [weak self] in
+            self?.activityIndicator.stopAnimating()
             self?.collectionView.reloadData()
         }
         
         
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return groups.count
     }
@@ -87,7 +113,13 @@ class AppsPageController: BaseListController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageController.headerIdentifier, for: indexPath)
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageController.headerIdentifier, for: indexPath) as? AppsPageHeader else {
+            return UICollectionReusableView()
+        }
+        
+        header.horizontalController.socialApps = socialApps
+        
+        
         return header
     }
     
