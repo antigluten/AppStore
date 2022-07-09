@@ -20,4 +20,7 @@ struct ResultEntity: Decodable {
     
     let screenshotUrls: [String]
     let artworkUrl100: String
+    
+    let formattedPrice: String
+    let releaseNotes: String
 }

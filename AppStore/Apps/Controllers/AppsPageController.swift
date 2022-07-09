@@ -110,7 +110,9 @@ class AppsPageController: BaseListController {
         cell.horizontalController.results = feed.results
         cell.horizontalController.didSelectHandler = { [weak self] model in
             let controller = AppDetailController()
-            controller.navigationItem.title = model.name
+            controller.manager = NetworkManager()
+            controller.id = model.id
+//            controller.navigationItem.title = model.name
             self?.navigationController?.pushViewController(controller, animated: true)
         }
         
