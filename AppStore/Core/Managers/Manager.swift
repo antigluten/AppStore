@@ -12,4 +12,5 @@ protocol Manager {
     func fetchITunesApps(searchTerm: String, completion: @escaping( Result<SearchResult, Error>) -> ())
     func fetchGames(type: NetworkManager.Category, completion: @escaping (Result<AppGroup, Error>) -> ())
     func fetchTrending(completion: @escaping (Result<[SocialApp], Error>) -> ())
+    func fetchApp(endpoint: NetworkManager.Endpoint, searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> ())
 }

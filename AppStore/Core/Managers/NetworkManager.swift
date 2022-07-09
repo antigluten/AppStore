@@ -17,6 +17,7 @@ class NetworkManager: Manager {
     
     enum Endpoint: String {
         case search
+        case lookup
     }
     
     enum Category: String, CaseIterable {
@@ -56,6 +57,19 @@ class NetworkManager: Manager {
         }
         
         task.resume()
+    }
+    
+    func fetchApp(endpoint: Endpoint, searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> ()) {
+        var url: String
+        
+        switch endpoint {
+        case .search:
+            url = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
+        case .lookup:
+            url = "https://itunes.apple.com/lookup?id=\(searchTerm)"
+        }
+        
+        fetch(with: url, completion: completion)
     }
     
     func fetchITunesApps(searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> Void) {

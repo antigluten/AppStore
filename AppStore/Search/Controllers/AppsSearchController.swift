@@ -59,25 +59,6 @@ class AppsSearchController: BaseListController {
         return results.count
     }
     
-    // MARK: - Public
-    func fetchItunesApps() {
-        manager.fetchITunesApps(searchTerm: "Twitter") { [weak self] result in
-            guard let self = self else {
-                return
-            }
-            
-            switch result {
-            case .success(let result):
-                self.results = result.results
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     // MARK: - Private
     private func setupSearchBar() {
         definesPresentationContext = true
@@ -111,7 +92,7 @@ extension AppsSearchController: UISearchResultsUpdating {
                 return
             }
             
-            self.manager.fetchITunesApps(searchTerm: text) { result in
+            self.manager.fetchApp(endpoint: .lookup, searchTerm: text) { result in
                 switch result {
                 case .success(let result):
                     self.results = result.results
