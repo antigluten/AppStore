@@ -45,7 +45,7 @@ class AppsPageController: BaseListController {
     private func fetchAppsData() {
         let dispatchGroup = DispatchGroup()
         
-        manager?.fetchGames(type: .topFree) { [weak self] result in
+        manager?.fetchGames(type: .topFreeGB) { [weak self] result in
             dispatchGroup.enter()
             defer {
                 dispatchGroup.leave()

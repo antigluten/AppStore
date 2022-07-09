@@ -19,19 +19,18 @@ class NetworkManager: Manager {
         case search
     }
     
-    enum GameCategory: String, CaseIterable {
+    enum Category: String, CaseIterable {
         case topFree = "https://rss.applemarketingtools.com/api/v2/us/apps/top-free/25/apps.json"
         case topPaid = "https://rss.applemarketingtools.com/api/v2/us/apps/top-paid/25/apps.json"
         case topFreeGB = "https://rss.applemarketingtools.com/api/v2/gb/apps/top-free/10/apps.json"
+        case trending = "https://api.letsbuildthatapp.com/appstore/social"
     }
     
     func createQuery() {
         
     }
     
-    func fetchITunesApps(searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> Void) {
-        let url = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
-        
+    func fetch<T: Decodable>(with url: String, completion: @escaping (Result<T, Error>) -> ()) {
         guard let url = URL(string: url) else {
             completion(.failure(NetworkErrors.invalidURL))
             return
@@ -48,7 +47,7 @@ class NetworkManager: Manager {
                 return
             }
 
-            guard let decodedData = try? JSONDecoder().decode(SearchResult.self, from: data) else {
+            guard let decodedData = try? JSONDecoder().decode(T.self, from: data) else {
                 completion(.failure(NetworkErrors.failedToDecode))
                 return
             }
@@ -59,61 +58,16 @@ class NetworkManager: Manager {
         task.resume()
     }
     
-    func fetchGames(type: GameCategory, completion: @escaping (Result<AppGroup, Error>) -> ()) {
-        guard let url = URL(string: type.rawValue) else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                completion(.failure(NetworkErrors.failedFetchingData))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkErrors.invalidData))
-                return
-            }
-
-            guard let decodedData = try? JSONDecoder().decode(AppGroup.self, from: data) else {
-                completion(.failure(NetworkErrors.failedToDecode))
-                return
-            }
-            
-            completion(.success(decodedData))
-        }
-        
-        task.resume()
+    func fetchITunesApps(searchTerm: String, completion: @escaping (Result<SearchResult, Error>) -> Void) {
+        let url = "https://itunes.apple.com/search?term=\(searchTerm)&entity=software"
+        fetch(with: url, completion: completion)
+    }
+    
+    func fetchGames(type: Category, completion: @escaping (Result<AppGroup, Error>) -> ()) {
+        fetch(with: type.rawValue, completion: completion)
     }
     
     func fetchTrending(completion: @escaping (Result<[SocialApp], Error>) -> ()) {
-        let url = "https://api.letsbuildthatapp.com/appstore/social"
-        
-        guard let url = URL(string: url) else {
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard error == nil else {
-                completion(.failure(NetworkErrors.failedFetchingData))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NetworkErrors.invalidData))
-                return
-            }
-
-            guard let decodedData = try? JSONDecoder().decode([SocialApp].self, from: data) else {
-                completion(.failure(NetworkErrors.failedToDecode))
-                return
-            }
-            
-            completion(.success(decodedData))
-        }
-        
-        task.resume()
+        fetch(with: Category.trending.rawValue, completion: completion)
     }
-    
-    
 }
