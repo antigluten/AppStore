@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AppsHorizontalController: BaseListController {
+class AppsHorizontalController: HorizontalSnappingController {
     static let identifier = "AppsHorizontalController"
     
     var results = [FeedResult]()
@@ -16,11 +16,9 @@ class AppsHorizontalController: BaseListController {
     private let lineSpacing: CGFloat = 10
     
     override func viewDidLoad() {
+        collectionView.backgroundColor = .systemBackground
         collectionView.register(AppRowCell.self, forCellWithReuseIdentifier: AppRowCell.identifier)
-        
-        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
+        collectionView.contentInset = .init(top: 0, left: 16, bottom: 0, right: 16)
     }
  
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -44,7 +42,7 @@ class AppsHorizontalController: BaseListController {
 
 extension AppsHorizontalController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = view.frame.width - 2 * 20
+        let width = view.frame.width - 48
         let height = (view.frame.height - 2 * topBottomPadding - 2 * lineSpacing) / 3
         return .init(width: width, height: height)
     }
@@ -54,6 +52,6 @@ extension AppsHorizontalController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .init(top: topBottomPadding, left: 16, bottom: topBottomPadding, right: 16)
+        return .init(top: topBottomPadding, left: 0, bottom: topBottomPadding, right: 0)
     }
 }
