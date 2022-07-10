@@ -8,6 +8,7 @@
 import UIKit
 
 class AppsPageHeader: UICollectionReusableView {
+    static let identifier = "AppsPageHeader"
     
     let horizontalController = AppsHeaderHorizontalController()
     

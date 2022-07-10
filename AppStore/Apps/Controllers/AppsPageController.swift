@@ -26,14 +26,11 @@ class AppsPageController: BaseListController {
     private var groups = [AppGroup]()
     private var socialApps = [SocialApp]()
     
-    static let identifier = "AppsPageController"
-    static let headerIdentifier = "AppsPageControllerHeader"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsPageController.identifier)
-        collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageController.headerIdentifier)
+        collectionView.register(AppsGroupCell.self, forCellWithReuseIdentifier: AppsGroupCell.identifier)
+        collectionView.register(AppsPageHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: AppsPageHeader.identifier)
         
         view.addSubview(activityIndicator)
         activityIndicator.fillSuperview()
@@ -103,7 +100,7 @@ class AppsPageController: BaseListController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsPageController.identifier, for: indexPath) as? AppsGroupCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppsGroupCell.identifier, for: indexPath) as? AppsGroupCell else { return UICollectionViewCell() }
         
         let feed = groups[indexPath.row].feed
         cell.titleLabel.text = feed.title
@@ -120,7 +117,7 @@ class AppsPageController: BaseListController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageController.headerIdentifier, for: indexPath) as? AppsPageHeader else {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: AppsPageHeader.identifier, for: indexPath) as? AppsPageHeader else {
             return UICollectionReusableView()
         }
         
